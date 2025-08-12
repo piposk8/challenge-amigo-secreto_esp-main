@@ -9,7 +9,7 @@ function asignarelemento(etiqueta,texto){
     return;
 }
 
-//agre
+//agregar en una lista los participantes
 function agregarAmigo(){
     let nombreAmigo = document.getElementById('amigo').value;
 
@@ -21,21 +21,36 @@ function agregarAmigo(){
 
     }
     limpiarInput();
-    console.log(listaAmigos);
+    
     return;
 }
 
-
+//funcion para sortear
 function sortearAmigo(){
+    if(listaAmigos.length == 1 ){
+        alert("debes agregar a otro amigo para poder sortearlo");
+        return;
+    }
+    if(listaAmigos.length == 0){
+        alert("necesitas agregar un nombre")
+        return;
+    }
+
+    
+    let sortear = Math.floor(Math.random() * listaAmigos.length);
+    let nombreElegido = listaAmigos[sortear];
+
+    
+    let resultado = document.getElementById("resultado");
+    resultado.textContent = `El amigo sorteado es: ${nombreElegido}`;
+    document.querySelector('#listaAmigos').innerHTML="";
 
 }
 
-
+//cada que se agrega una persona queda vacio para poder agregar un valor
+//el cursor queda en el input activo para poder agregar un valor
 function limpiarInput(){
     document.getElementById('amigo').value = "";
     document.getElementById('amigo').focus();
     return;
 }
-
-
-console.log(listaAmigos);

@@ -1,5 +1,7 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let listaAmigos = [];
+//variable para poder reiniciar
+let sorteoRealizado= false;
 //crea un nuevo elemento en este caso una etiqueta <li> para agregar los nombres que se ingresen
 function asignarelemento(etiqueta,texto){
     let elementoHTML = document.querySelector(etiqueta);
@@ -11,6 +13,14 @@ function asignarelemento(etiqueta,texto){
 
 //agregar en una lista los participantes
 function agregarAmigo(){
+
+    if(sorteoRealizado){
+        listaAmigos=[];
+        document.querySelector('#listaAmigos').innerHTML="";
+        document.getElementById("resultado").textContent="";
+        sorteoRealizado=false;
+    }
+
     let nombreAmigo = document.getElementById('amigo').value;
 
     if(nombreAmigo == ""){
@@ -18,6 +28,7 @@ function agregarAmigo(){
     }else{
         listaAmigos.push(nombreAmigo);
         asignarelemento('#listaAmigos',nombreAmigo);
+        document.getElementById("resultado").textContent = "";
 
     }
     limpiarInput();
@@ -44,6 +55,8 @@ function sortearAmigo(){
     let resultado = document.getElementById("resultado");
     resultado.textContent = `El amigo sorteado es: ${nombreElegido}`;
     document.querySelector('#listaAmigos').innerHTML="";
+    sorteoRealizado = true;
+    
 
 }
 
